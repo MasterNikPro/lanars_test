@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
+import '../../models/unsplash_image.dart';
+
 part 'unsplash_event.dart';
 part 'unsplash_state.dart';
 
