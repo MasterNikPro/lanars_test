@@ -1,18 +1,18 @@
 class UnsplashImage {
-  final String id;
-  final DateTime createdAt;
-  final DateTime updatedAt;
-  final int width;
-  final int height;
-  final String color;
-  final String blurHash;
-  final int likes;
-  final bool likedByUser;
-  final String description;
-  final User user;
-  final List<Collection> currentUserCollections;
-  final Urls urls;
-  final Links links;
+  final String? id;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
+  final int? width;
+  final int? height;
+  final String? color;
+  final String? blurHash;
+  final int? likes;
+  final bool? likedByUser;
+  final String? description;
+  final User? user;
+  final List<Collection>? currentUserCollections;
+  final Urls? urls;
+  final Links? links;
 
   UnsplashImage({
     required this.id,
