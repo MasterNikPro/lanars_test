@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../blocs/unsplash/unsplash_bloc.dart';
 import '../../../sevices/unsplash_api_service.dart';
+import '../widgets/bottom_navigation_bar.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -30,9 +31,9 @@ void lol()async{
     return BlocProvider(
       create: (context) => UnsplashBloc(UnsplashService()),
       child: Scaffold(
-        body: Container(
-          alignment: Alignment.center,
-          child: BlocBuilder<UnsplashBloc, UnsplashState>(
+        bottomNavigationBar: BottomNavBar(),
+        body: Column(
+          children:[ BlocBuilder<UnsplashBloc, UnsplashState>(
             bloc:bloc,
             builder: (context, state) {
               if(state is UnsplashLoadingState)
@@ -44,7 +45,7 @@ void lol()async{
             }
             return CircularProgressIndicator();
             },
-          ),
+          ),]
         ),
       ),
     );
