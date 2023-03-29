@@ -9,14 +9,13 @@ part 'unsplash_event.dart';
 part 'unsplash_state.dart';
 
 class UnsplashBloc extends Bloc<UnsplashEvent, UnsplashState> {
-  final UnsplashService unsplashService;
-
+final UnsplashService unsplashService;
   UnsplashBloc(this.unsplashService) : super(UnsplashInitial()) {
     on<UnsplashGetPhotos>(_onGetPhotos);
   }
 
   _onGetPhotos(UnsplashGetPhotos event, Emitter<UnsplashState> emit) async {
     emit(UnsplashLoadingState());
-    emit(UnsplashLoadedState(images: event.images));
+    emit(UnsplashLoadedState( images: event.images));
   }
 }
