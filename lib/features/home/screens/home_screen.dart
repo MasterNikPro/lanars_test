@@ -7,6 +7,7 @@ import 'package:lanars_test/models/unsplash_image.dart';
 import '../../../blocs/unsplash/unsplash_bloc.dart';
 import '../../../sevices/unsplash_api_service.dart';
 import '../widgets/bottom_navigation_bar.dart';
+import 'detail_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<UnsplashImage> _photos=[];
+  List<UnsplashImage> _photos = [];
   int _page = 1;
   final bloc = UnsplashBloc(UnsplashService());
   ScrollController _scrollController = ScrollController();
@@ -29,28 +30,26 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
-
   void _fetchPhotos() async {
-
-    try{
-    List<UnsplashImage> photos = await UnsplashService().getPhotos(_page, 20);
-    _photos.addAll(photos);
-    bloc.add(UnsplashGetPhotos(await UnsplashService().getPhotos(_page, 20)));
-    bloc.add(UnsplashGetPhotos(_photos));
-    //bloc.add(event)
-
-    _page++;
-    _isLoading = false;}
-    catch (e) {
-        _isLoading = false;
+    try {
+      List<UnsplashImage> photos = await UnsplashService().getPhotos(_page, 20);
+      _photos.addAll(photos);
+      bloc.add(UnsplashGetPhotos(await UnsplashService().getPhotos(_page, 20)));
+      bloc.add(UnsplashGetPhotos(_photos));
+      _page++;
+      _isLoading = false;
+    } catch (e) {
+      _isLoading = false;
     }
   }
-  Future refresh()async{
+
+  Future refresh() async {
     List<UnsplashImage> photos = await UnsplashService().getPhotos(_page, 20);
     _photos.addAll(photos);
     bloc.add(UnsplashGetPhotos(await UnsplashService().getPhotos(_page, 20)));
     bloc.add(UnsplashGetPhotos(_photos));
   }
+
   void _scrollListener() {
     if (!_isLoading &&
         _scrollController.position.pixels ==
@@ -58,6 +57,7 @@ class _HomePageState extends State<HomePage> {
       _fetchPhotos();
     }
   }
+
   @override
   void dispose() {
     _scrollController.dispose();
@@ -65,11 +65,12 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => UnsplashBloc(UnsplashService()),
       child: Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: const Text(
             "Unsplash Lanars",
             style: TextStyle(color: Colors.black),
@@ -84,39 +85,50 @@ class _HomePageState extends State<HomePage> {
               return const CircularProgressIndicator();
             }
             if (state is UnsplashLoadedState) {
-              return RefreshIndicator(onRefresh:  refresh,child: GridView.custom(
-                controller:  _scrollController,
-                  padding: const EdgeInsets.only(
-                    bottom: 16,
-                    left: 16,
-                    right: 16,
-                  ),
-                  gridDelegate: SliverQuiltedGridDelegate(
-                    crossAxisCount: 6,
-                    mainAxisSpacing: 8,
-                    crossAxisSpacing: 8,
-                    repeatPattern: QuiltedGridRepeatPattern.inverted,
-                    pattern: const [
-                      QuiltedGridTile(4, 4),
-                      QuiltedGridTile(2, 2),
-                      QuiltedGridTile(2, 2),
-                    ],
-                  ),
-                  childrenDelegate: SliverChildBuilderDelegate(
-                    (context, index) {
-                      return ImageTile(state.images[index]);
-                    },
-                    childCount:_photos.length,
-                  )));
-            }
-            else {
+              return RefreshIndicator(
+                  onRefresh: refresh,
+                  child: GridView.custom(
+                      controller: _scrollController,
+                      padding: const EdgeInsets.only(
+                        bottom: 16,
+                        left: 16,
+                        right: 16,
+                      ),
+                      gridDelegate: SliverQuiltedGridDelegate(
+                        crossAxisCount: 6,
+                        mainAxisSpacing: 8,
+                        crossAxisSpacing: 8,
+                        repeatPattern: QuiltedGridRepeatPattern.inverted,
+                        pattern: const [
+                          QuiltedGridTile(4, 4),
+                          QuiltedGridTile(2, 2),
+                          QuiltedGridTile(2, 2),
+                        ],
+                      ),
+                      childrenDelegate: SliverChildBuilderDelegate(
+                        (context, index) {
+                          return GestureDetector(
+                            child: ImageTile(state.images[index]),
+                            onTap: () {
+                              Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => DetailScreen(
+                                      unsplashImage: _photos[index],
+                                    ),
+                                  ),
+                                  (route) => false);
+                            },
+                          );
+                        },
+                        childCount: _photos.length,
+                      )));
+            } else {
               return const CircularProgressIndicator();
             }
-
           },
         ),
       ),
     );
   }
-
 }

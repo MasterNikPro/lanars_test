@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:lanars_test/features/home/screens/detail_screen.dart';
 import 'package:lanars_test/features/home/screens/home_screen.dart';
 import 'package:lanars_test/features/home/screens/search_screen.dart';
+import 'package:lanars_test/models/unsplash_image.dart';
 
 void main() {
   runApp( MyApp());
@@ -18,6 +20,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/':(context)=>HomePage(),
         '/search_screen':(context)=> SearchScreen(),
+        '/detailed_screen':(context)=>DetailScreen(unsplashImage: null),
       },
     );
   }
