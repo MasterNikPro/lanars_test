@@ -45,8 +45,11 @@ class _HomePageState extends State<HomePage> {
         _isLoading = false;
     }
   }
-  Future<void> refresh()async{
-
+  Future refresh()async{
+    List<UnsplashImage> photos = await UnsplashService().getPhotos(_page, 20);
+    _photos.addAll(photos);
+    bloc.add(UnsplashGetPhotos(await UnsplashService().getPhotos(_page, 20)));
+    bloc.add(UnsplashGetPhotos(_photos));
   }
   void _scrollListener() {
     if (!_isLoading &&
@@ -62,7 +65,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return BlocProvider(
       create: (context) => UnsplashBloc(UnsplashService()),
       child: Scaffold(
@@ -81,7 +84,7 @@ class _HomePageState extends State<HomePage> {
               return const CircularProgressIndicator();
             }
             if (state is UnsplashLoadedState) {
-              return RefreshIndicator(onRefresh: refresh(),child: GridView.custom(
+              return RefreshIndicator(onRefresh:  refresh,child: GridView.custom(
                 controller:  _scrollController,
                   padding: const EdgeInsets.only(
                     bottom: 16,
