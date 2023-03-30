@@ -82,7 +82,7 @@ class _HomePageState extends State<HomePage> {
           bloc: bloc,
           builder: (context, state) {
             if (state is UnsplashLoadingState) {
-              return const CircularProgressIndicator();
+              return const Center(child: CircularProgressIndicator());
             }
             if (state is UnsplashLoadedState) {
               return RefreshIndicator(
@@ -124,7 +124,7 @@ class _HomePageState extends State<HomePage> {
                         childCount: _photos.length,
                       )));
             } else {
-              return const CircularProgressIndicator();
+              return const Center(child: CircularProgressIndicator());
             }
           },
         ),

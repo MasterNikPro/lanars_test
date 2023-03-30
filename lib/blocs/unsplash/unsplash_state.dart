@@ -16,5 +16,4 @@ class UnsplashLoadedState extends UnsplashState {
 }
 
 class UnsplashLoadingState extends UnsplashState {
-
 }
