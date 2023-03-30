@@ -11,6 +11,7 @@ class UnsplashService {
         "per_page": perPage,
       },);
       final data = response.data as List<dynamic>;
+
       return data.map((unsplashImage) => UnsplashImage.fromJson(unsplashImage)).toList();
     } on DioError catch (error) {
       throw error.message ?? "An error occurred while making the request";
