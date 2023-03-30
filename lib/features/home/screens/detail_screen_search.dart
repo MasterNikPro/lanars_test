@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lanars_test/features/home/widgets/info_sheet.dart';
 import 'package:lanars_test/models/unsplash_api_search.dart';
-import 'package:lanars_test/models/unsplash_image.dart';
 import 'package:photo_view/photo_view.dart';
-
 import '../widgets/info_sheet_search.dart';
 
 class DetailScreenSearch extends StatefulWidget {
@@ -18,12 +15,6 @@ class DetailScreenSearch extends StatefulWidget {
 class _DetailScreenState extends State<DetailScreenSearch> {
 
 
-  @override
-  void initState() {
-    //_showPersistantBottomSheetCallBack = _showInfoBottomSheet;
-    // TODO: implement initState
-    //if (infoBottomSheetController != null) _showInfoBottomSheet();
-  }
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   bool isChecked=false;
@@ -73,7 +64,7 @@ class _DetailScreenState extends State<DetailScreenSearch> {
     leading:
     // back button
     IconButton(
-        icon: Icon(
+        icon: const Icon(
           Icons.arrow_back,
           color: Colors.white,
         ),
@@ -81,7 +72,7 @@ class _DetailScreenState extends State<DetailScreenSearch> {
     actions: <Widget>[
       // show image info
       IconButton(
-        icon: Icon(
+        icon: const Icon(
           Icons.info_outline,
           color: Colors.white,
         ),
@@ -102,12 +93,11 @@ class _DetailScreenState extends State<DetailScreenSearch> {
   );
 
   _showInfoBottomSheet(BuildContext context) {
-    print(_scaffoldKey.currentState);
     _scaffoldKey.currentState!.showBottomSheet<void>((context) {
-      return new InfoSheetSearch(widget.unsplashImage);
+      return InfoSheetSearch(widget.unsplashImage);
     });
     _scaffoldKey.currentState!.showBottomSheet((context) {
-      return new InfoSheetSearch(widget.unsplashImage);
+      return InfoSheetSearch(widget.unsplashImage);
     });
   }
 }

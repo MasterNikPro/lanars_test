@@ -5,6 +5,8 @@ import 'package:lanars_test/features/home/screens/search_screen.dart';
 import '../../../utils/bottom_navigation_bar_elements.dart';
 
 class BottomNavBar extends StatelessWidget {
+  const BottomNavBar({super.key});
+
   @override
   Widget build(BuildContext context) {
     int? _selectedIndex;

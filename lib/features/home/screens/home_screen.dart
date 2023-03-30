@@ -17,10 +17,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<UnsplashImage> _photos = [];
+  final List<UnsplashImage> _photos = [];
   int _page = 1;
   final bloc = UnsplashBloc(UnsplashService());
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
   bool _isLoading = false;
 
   @override

@@ -5,7 +5,7 @@ import '../../../models/unsplash_image.dart';
 class InfoSheet extends StatelessWidget {
   final UnsplashImage? _image;
 
-  InfoSheet(this._image, {super.key});
+  const InfoSheet(this._image, {super.key});
 
   @override
   Widget build(BuildContext context) => Card(

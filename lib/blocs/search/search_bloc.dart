@@ -4,8 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:lanars_test/models/unsplash_api_search.dart';
 import 'package:meta/meta.dart';
 
-import '../../models/unsplash_image.dart';
-
 part 'search_event.dart';
 part 'search_state.dart';
 

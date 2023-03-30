@@ -1,7 +1,6 @@
-import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:lanars_test/models/unsplash_image.dart';
+
 
 import '../models/unsplash_api_search.dart';
 class UnsplashServiceSearch {
@@ -18,11 +17,9 @@ class UnsplashServiceSearch {
       },);
       final data = response.data;
 
-     final lol=data['results'];
-     final kek= lol as List<dynamic>;
-     // final results = List<Map<String, dynamic>>.from(data['results']);
-      print("api${kek.map((unsplashImage) => UnsplashImageSearch.fromJson(unsplashImage)).toList()}");
-      return kek.map((unsplashImage) => UnsplashImageSearch.fromJson(unsplashImage)).toList();
+     final result=data['results'];
+     final main= result as List<dynamic>;
+      return main.map((unsplashImage) => UnsplashImageSearch.fromJson(unsplashImage)).toList();
     } on DioError catch (error) {
       throw error.message ?? "An error occurred while making the request";
     }

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+
 class UnsplashImageSearch {
   final String? id;
   final DateTime? createdAt;

@@ -15,12 +15,6 @@ class DetailScreen extends StatefulWidget {
 class _DetailScreenState extends State<DetailScreen> {
 
 
-  @override
-  void initState() {
-    //_showPersistantBottomSheetCallBack = _showInfoBottomSheet;
-    // TODO: implement initState
-    //if (infoBottomSheetController != null) _showInfoBottomSheet();
-  }
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 bool isChecked=false;
@@ -70,7 +64,7 @@ bool isChecked=false;
         leading:
             // back button
             IconButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.arrow_back,
                   color: Colors.white,
                 ),
@@ -78,7 +72,7 @@ bool isChecked=false;
         actions: <Widget>[
           // show image info
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.info_outline,
               color: Colors.white,
             ),
@@ -99,12 +93,11 @@ bool isChecked=false;
       );
 
   _showInfoBottomSheet(BuildContext context) {
-    print(_scaffoldKey.currentState);
     _scaffoldKey.currentState!.showBottomSheet<void>((context) {
-      return new InfoSheet(widget.unsplashImage);
+      return InfoSheet(widget.unsplashImage);
     });
     _scaffoldKey.currentState!.showBottomSheet((context) {
-      return new InfoSheet(widget.unsplashImage);
+      return InfoSheet(widget.unsplashImage);
     });
   }
 }

@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:lanars_test/features/home/screens/detail_screen.dart';
 import 'package:lanars_test/features/home/screens/home_screen.dart';
 import 'package:lanars_test/features/home/screens/search_screen.dart';
-import 'package:lanars_test/models/unsplash_image.dart';
-
 void main() {
-  runApp( MyApp());
+  runApp( const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -18,9 +16,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/':(context)=>HomePage(),
-        '/search_screen':(context)=> SearchScreen(),
-        '/detailed_screen':(context)=>DetailScreen(unsplashImage: null),
+        '/':(context)=>const HomePage(),
+        '/search_screen':(context)=> const SearchScreen(),
+        '/detailed_screen':(context)=>const DetailScreen(unsplashImage: null),
       },
     );
   }

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:lanars_test/models/unsplash_api_search.dart';
 
-import '../../../models/unsplash_image.dart';
 
 class InfoSheetSearch extends StatelessWidget {
   final UnsplashImageSearch? _image;
 
-  InfoSheetSearch(this._image, {super.key});
+  const InfoSheetSearch(this._image, {super.key});
 
   @override
   Widget build(BuildContext context) => Card(
