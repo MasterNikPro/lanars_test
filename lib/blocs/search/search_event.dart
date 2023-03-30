@@ -4,5 +4,6 @@ part of 'search_bloc.dart';
 abstract class SearchEvent {}
 class LoadedSearchImagesEvent extends SearchEvent{
   final List<UnsplashImageSearch?>? images;
-  LoadedSearchImagesEvent( this.images);
+  final String keyword;
+  LoadedSearchImagesEvent( this.images,this.keyword);
 }

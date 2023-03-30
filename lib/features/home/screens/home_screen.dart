@@ -124,7 +124,7 @@ class _HomePageState extends State<HomePage> {
                         childCount: _photos.length,
                       )));
             } else {
-              return const CircularProgressIndicator();
+              return const Center(child: CircularProgressIndicator());
             }
           },
         ),

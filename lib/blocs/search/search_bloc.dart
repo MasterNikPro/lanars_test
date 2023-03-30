@@ -15,6 +15,6 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   }
   _onSearched(LoadedSearchImagesEvent event,Emitter<SearchState> emit ){
     emit(LoadingSearchImagesState());
-    emit(LoadedSearchImagesState(images:event.images));
+    emit(LoadedSearchImagesState(images:event.images, keyword: event.keyword));
   }
 }
